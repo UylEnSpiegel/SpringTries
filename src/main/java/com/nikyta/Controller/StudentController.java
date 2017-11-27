@@ -4,19 +4,24 @@ import com.nikyta.Entity.Student;
 import com.nikyta.Service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import javax.print.attribute.standard.Media;
 import java.awt.*;
 import java.util.Collection;
 
-
+@Controller
 @RestController
 @RequestMapping("/students")
 public class StudentController {
 
     @Autowired
     private StudentService studentService;
+
+    public StudentController(StudentService service){
+        this.studentService = service;
+    }
 
     @RequestMapping(method = RequestMethod.GET)
     public Collection<Student> getAllStudents(){
