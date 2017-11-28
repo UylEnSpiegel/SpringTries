@@ -25,8 +25,9 @@ public class WebMockTests {
 
     @Autowired
     private MockMvc mockMvc;
-    @Autowired
-    private static Student fakeStudent;
+
+//    @Autowired
+    private static Student fakeStudent = new Student();
 
     @MockBean
     private StudentService studentService;
@@ -41,8 +42,6 @@ public class WebMockTests {
     @Test
     public void returnStudentById() throws Exception{
         formFakeStudent();
-        System.out.println(fakeStudent.getName());
-
 
         when(studentService.getStudentById(1))
                 .thenReturn(fakeStudent);
