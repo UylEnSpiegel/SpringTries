@@ -7,6 +7,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.restdocs.AutoConfigureRestDocs;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
@@ -17,6 +18,7 @@ import static org.springframework.restdocs.payload.PayloadDocumentation.response
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
+import static org.springframework.restdocs.payload.PayloadDocumentation.*;
 
 @AutoConfigureRestDocs(outputDir = "target/snippets")
 @RunWith(SpringRunner.class)
@@ -28,11 +30,13 @@ public class TryingDocks {
 
     @Test
     public void shouldReturnAllStudents() throws Exception{
-        this.mockMvc.perform(get("/students"))
+        this.mockMvc.perform(get("/students/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("id")))
                 .andDo(document("home", responseFields(
-                        fieldWithPath("name").description("The list of all students")
+                        fieldWithPath("id").description("The id of the student"),
+                        fieldWithPath("name").description("The id of the student"),
+                        fieldWithPath("course").description("The id of the student")
                 )));
     }
 
