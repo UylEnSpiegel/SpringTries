@@ -29,15 +29,27 @@ public class TryingDocks {
     private MockMvc mockMvc;
 
     @Test
-    public void shouldReturnAllStudents() throws Exception{
+    public void shouldReturnSingleStudent() throws Exception{
         this.mockMvc.perform(get("/students/1").accept(MediaType.APPLICATION_JSON))
                 .andExpect(status().isOk())
                 .andExpect(content().string(containsString("id")))
-                .andDo(document("home", responseFields(
+                .andDo(document("singleStudent", responseFields(
                         fieldWithPath("id").description("The id of the student"),
-                        fieldWithPath("name").description("The id of the student"),
-                        fieldWithPath("course").description("The id of the student")
+                        fieldWithPath("name").description("The name of the student"),
+                        fieldWithPath("course").description("The course of the student")
                 )));
+    }
+
+    @Test
+    public void shouldReturnAllStudents() throws Exception{
+
+        this.mockMvc.perform(get("/students").accept(MediaType.APPLICATION_JSON))
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("id")))
+                .andDo(document("listOfStudents", responseFields(
+                        fieldWithPath("[]").description("The List of students")
+                )));
+
     }
 
 }
