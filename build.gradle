@@ -18,7 +18,7 @@ apply plugin: 'spring-boot'
 asciidoctor {
     sourceDir 'src/main/asciidoc'
     attributes \
-      'snippets': file('target/snippets')
+      'snippets': file('build/snippets')
 }
 
 jar {
