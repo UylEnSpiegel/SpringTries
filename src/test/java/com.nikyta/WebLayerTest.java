@@ -15,32 +15,32 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
-//@RunWith(SpringRunner.class)
-//@WebMvcTest(StudentController.class)
+@RunWith(SpringRunner.class)
+@WebMvcTest(StudentController.class)
 public class WebLayerTest {
-//
-//    @Autowired
-//    private MockMvc mockMvc;
-//
-//    @Test
-//    public void shouldReturnAllFakeStudents() throws Exception{
-//        this.mockMvc.perform(get("/students"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("id")));
-//
-//
-//    }
-//
-//    @Test
-//    public void shouldReturnFakeStudentById() throws Exception{
-//
-//        this.mockMvc.perform(get("/students/1"))
-//                .andDo(print())
-//                .andExpect(status().isOk())
-//                .andExpect(content().string(containsString("Perviy")));
-//
-//    }
+
+    @Autowired
+    private MockMvc mockMvc;
+
+    @Test
+    public void shouldReturnAllFakeStudents() throws Exception{
+        this.mockMvc.perform(get("/students"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("id")));
+
+
+    }
+
+    @Test
+    public void shouldReturnFakeStudentById() throws Exception{
+
+        this.mockMvc.perform(get("/students/1"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().string(containsString("Perviy")));
+
+    }
 
 
 }
